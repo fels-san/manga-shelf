@@ -1,0 +1,9 @@
+.container {
+  width: 80%;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

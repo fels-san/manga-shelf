@@ -1,0 +1,49 @@
+.header {
+  position: fixed;
+  background: #252527;
+
+  z-index: 10;
+  width: 80%;
+  border-radius: 0 0 20px 20px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 1rem;
+  padding-left: 4rem;
+  color: #bfbfbf;
+}
+
+.title {
+  width: 30%;
+}
+
+.title h1 {
+  color: #bfbfbf;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.title h1 svg {
+  font-size: 2rem;
+  color: #4a3ea3;
+}
+
+.menu {
+  width: 100%;
+  /* padding-top: 1rem; */
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.menu a {
+  color: #bfbfbf;
+}

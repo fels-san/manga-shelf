@@ -1,0 +1,103 @@
+.container {
+  background-color: #1c1c1c;
+  color: #bfbfbf;
+
+  width: 80%;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  padding: 3rem;
+  padding-right: 5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.score {
+  display: flex;
+}
+
+.score svg {
+  color: #ffb656;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.poster {
+  width: 19rem;
+  height: fit-content;
+
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  width: 80%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.award {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.award a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #bfbfbf;
+}
+
+.award svg {
+  color: #ffb656;
+}
+
+.info h3,
+.description h3,
+.authors h3 {
+  margin-bottom: 0.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.description {
+}

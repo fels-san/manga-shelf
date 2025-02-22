@@ -1,0 +1,101 @@
+.container {
+  background-color: #1c1c1c;
+  color: #bfbfbf;
+
+  width: 80%;
+  min-height: 80vh;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  padding: 3rem;
+}
+
+.filters {
+  width: 20%;
+  color: white;
+  padding: 20px 0;
+  border-radius: 8px;
+}
+
+.filters h2 {
+  margin-bottom: 1rem;
+}
+
+.filterGroup {
+  margin-bottom: 15px;
+}
+
+.filterGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background: #2a2734;
+  color: white;
+}
+
+button.applyFilters {
+  width: 100%;
+  padding: 10px;
+  background: #4a3ea3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mangaList {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mangaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.mangaGrid a {
+  position: relative;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  font-size: 16px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: solid 1px rgba(80, 80, 80, 0.5);
+}
+
+.pagination button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
