@@ -65,7 +65,10 @@ export const fetchManga = async ({
     "https://shikimori.one/api/graphql",
     { query },
     {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "MangaShelf",
+      },
     }
   );
 
@@ -73,27 +76,29 @@ export const fetchManga = async ({
     throw new Error("Ошибка загрузки манги");
   }
 
-  const mangas: Manga[] = response.data.data.mangas.map((mangaItem: MangaResponse) => ({
-    id: mangaItem.id,
-    poster: mangaItem.poster.originalUrl,
-    miniPoster: mangaItem.poster.mainUrl,
-    title: mangaItem.russian || mangaItem.name,
-    originalTitle: mangaItem.name,
-    licenseNameRu: mangaItem.licenseNameRu,
-    licensors: mangaItem.licensors,
-    description: mangaItem.descriptionHtml,
-    score: mangaItem.score,
-    genres: mangaItem.genres.map((genre) => genre.russian),
-    authors: mangaItem.personRoles.map((role) => ({
-      name: role.person.name,
-      role: role.rolesRu.join(", ").toLowerCase(),
-    })),
-    publishers: mangaItem.publishers.map((publisher) => publisher.name),
-    airedOn: mangaItem.airedOn,
-    releasedOn: mangaItem.releasedOn,
-    chapters: mangaItem.chapters,
-    volumes: mangaItem.volumes,
-  }));
+  const mangas: Manga[] = response.data.data.mangas.map(
+    (mangaItem: MangaResponse) => ({
+      id: mangaItem.id,
+      poster: mangaItem.poster.originalUrl,
+      miniPoster: mangaItem.poster.mainUrl,
+      title: mangaItem.russian || mangaItem.name,
+      originalTitle: mangaItem.name,
+      licenseNameRu: mangaItem.licenseNameRu,
+      licensors: mangaItem.licensors,
+      description: mangaItem.descriptionHtml,
+      score: mangaItem.score,
+      genres: mangaItem.genres.map((genre) => genre.russian),
+      authors: mangaItem.personRoles.map((role) => ({
+        name: role.person.name,
+        role: role.rolesRu.join(", ").toLowerCase(),
+      })),
+      publishers: mangaItem.publishers.map((publisher) => publisher.name),
+      airedOn: mangaItem.airedOn,
+      releasedOn: mangaItem.releasedOn,
+      chapters: mangaItem.chapters,
+      volumes: mangaItem.volumes,
+    })
+  );
 
   return mangas;
 };
