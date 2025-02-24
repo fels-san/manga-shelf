@@ -56,13 +56,15 @@ function MangaDetails() {
             <div className={classes.about}>
               <div className={classes.info}>
                 <h3>Информация</h3>
-                {getMangaAwards(manga.id, mangaAwards) && (
+                {getMangaAwards(manga.id.toString(), mangaAwards) && (
                   <div className={classes.award}>
-                    {getMangaAwards(manga.id, mangaAwards)?.map((award) => (
-                      <Link to={`/awards/${award.key}`} key={award.key}>
-                        <EmojiEventsRoundedIcon /> {award.title}
-                      </Link>
-                    ))}
+                    {getMangaAwards(manga.id.toString(), mangaAwards)?.map(
+                      (award) => (
+                        <Link to={`/awards/${award.key}`} key={award.key}>
+                          <EmojiEventsRoundedIcon /> {award.title}
+                        </Link>
+                      )
+                    )}
                   </div>
                 )}
                 <div>
@@ -71,16 +73,20 @@ function MangaDetails() {
                   </p>
                   <p>{formatMangaDate(startDate, endDate)}</p>
                 </div>
-                {manga.volumes > 0 && <div>
-                  <p>
-                    <strong>Тома:</strong> {manga.volumes}
-                  </p>
-                </div>}
-                {manga.chapters > 0 && <div>
-                  <p>
-                    <strong>Главы:</strong> {manga.chapters}
-                  </p>
-                </div>}
+                {manga.volumes > 0 && (
+                  <div>
+                    <p>
+                      <strong>Тома:</strong> {manga.volumes}
+                    </p>
+                  </div>
+                )}
+                {manga.chapters > 0 && (
+                  <div>
+                    <p>
+                      <strong>Главы:</strong> {manga.chapters}
+                    </p>
+                  </div>
+                )}
                 <div>
                   <p>
                     <strong>Жанры:</strong>
