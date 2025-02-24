@@ -13,7 +13,7 @@ function MangaCard({ manga, variant = "large" }: { manga: Manga; variant?: "smal
         </div>
         <div className={classes.details}>
           <h2>
-            {manga.title} {variant === "large" && `, ${manga.airedOn.year}`}
+            {manga.title}{variant === "large" && `, ${manga.airedOn.year}`}
           </h2>
           {variant === "large" && (
             <>

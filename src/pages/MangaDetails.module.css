@@ -1,25 +1,22 @@
 .container {
   background-color: #1c1c1c;
   color: #bfbfbf;
-
   width: 80%;
   margin-top: 6rem;
-  margin-bottom: 6rem;
-
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
   border-radius: 20px;
   overflow: hidden;
-
-  padding: 3rem;
-  padding-right: 5rem;
+  padding: 2rem;
+  padding-right: 2rem;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .score {
@@ -32,14 +29,14 @@
 
 .body {
   display: flex;
-  flex-direction: row;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .poster {
-  width: 19rem;
+  width: 100%;
+  max-width: 19rem;
   height: fit-content;
-
   border-radius: 5px;
   overflow: hidden;
 }
@@ -54,8 +51,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  width: 80%;
 }
 
 .info {
@@ -99,5 +94,8 @@
   gap: 0.5rem;
 }
 
-.description {
+@media (min-width: 768px) {
+  .body {
+    flex-direction: row;
+  }
 }

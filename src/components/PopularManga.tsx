@@ -52,12 +52,10 @@ function PopularManga() {
             delay: 6500,
             disableOnInteraction: false,
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {mangaList.map((manga) => (
-            <SwiperSlide>
-              <MangaCard manga={manga} key={manga.id} />
+            <SwiperSlide key={`${manga.id}_popular`}>
+              <MangaCard manga={manga} />
             </SwiperSlide>
           ))}
         </Swiper>

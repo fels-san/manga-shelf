@@ -7,7 +7,6 @@ import RootLayout from "./pages/Root";
 import MangaDetails from "./pages/MangaDetails";
 import Catalog from "./pages/Catalog";
 import Awards from "./pages/Awards";
-import Mangaka from "./pages/Mangaka";
 
 const theme = createTheme({
   typography: {

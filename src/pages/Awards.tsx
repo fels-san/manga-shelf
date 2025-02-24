@@ -31,6 +31,7 @@ function Awards() {
           ids: chunk.join(","),
           order: "popularity",
         }),
+      refetchOnWindowFocus: false,
     })),
   });
 
@@ -41,45 +42,47 @@ function Awards() {
 
   return (
     <div className={classes.container}>
-      {!isLoading && !error && award && <div className={classes.body}>
-        <section className={classes.awardInfo}>
-          <h1>{award.name}</h1>
-          <p>{award.description}</p>
-        </section>
+      {award && (
+        <div className={classes.body}>
+          <section className={classes.awardInfo}>
+            <h1>{award.name}</h1>
+            <p>{award.description}</p>
+          </section>
 
-        <section className={classes.winners}>
-          {isLoading && <p>Загрузка...</p>}
-          {error && <p>Ошибка загрузки данных</p>}
-          {!isLoading &&
-            !error &&
-            Object.entries(award.winners).map(([year, ids]) => (
-              <div className={classes.yearBlock} key={year}>
-                <h2>
-                  <EmojiEventsRoundedIcon /> {year}
-                </h2>
-                <div className={classes.winnerList}>
-                  {ids.map((id) => {
-                    const manga = mangaList.find(
-                      (m) => Number(m.id) === Number(id)
-                    );
-                    if (!manga) return;
+          <section className={classes.winners}>
+            {isLoading && <p>Загрузка...</p>}
+            {error && <p>Ошибка загрузки данных</p>}
+            {!isLoading &&
+              !error &&
+              Object.entries(award.winners).map(([year, ids]) => (
+                <div className={classes.yearBlock} key={year}>
+                  <h2>
+                    <EmojiEventsRoundedIcon /> {year}
+                  </h2>
+                  <div className={classes.winnerList}>
+                    {ids.map((id) => {
+                      const manga = mangaList.find(
+                        (m) => Number(m.id) === Number(id)
+                      );
+                      if (!manga) return;
 
-                    return (
-                      <Link to={`/mangas/${manga.id}`}>
-                        <div className={classes.winnerCard} key={id}>
-                          <img src={manga.miniPoster} alt={manga.title} />
-                          <div className={classes.winnerInfo}>
-                            <h3>{manga.title}</h3>
+                      return (
+                        <Link to={`/mangas/${manga.id}`} key={`${id}_${year}`}>
+                          <div className={classes.winnerCard}>
+                            <img src={manga.miniPoster} alt={manga.title} />
+                            <div className={classes.winnerInfo}>
+                              <h3>{manga.title}</h3>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
-        </section>
-      </div>}
+              ))}
+          </section>
+        </div>
+      )}
       <nav className={classes.nav}>
         <ul>
           {[

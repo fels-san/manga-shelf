@@ -3,23 +3,29 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import { fetchManga } from "../api/shikimori";
-import classes from "./TopManga.module.css";
+import classes from "./MangaList.module.css";
 import MangaCard from "./MangaCard";
 
-function TopManga() {
+interface MangaListProps {
+  title: string;
+  queryKey: string;
+  queryParams: { limit: number; order: string; status?: string };
+}
+
+function MangaList({ title, queryKey, queryParams }: MangaListProps) {
   const {
     data: mangaList,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["mangaList", { limit: 20, order: "ranked_shiki" }],
-    queryFn: () => fetchManga({ limit: 20, order: "ranked_shiki" }),
+    queryKey: [queryKey, queryParams],
+    queryFn: () => fetchManga(queryParams),
     refetchOnWindowFocus: false,
   });
 
   return (
     <div className={classes.container}>
-      <h2>Лучшее за всё время</h2>
+      <h2>{title}</h2>
       {isLoading && <p>Загрузка...</p>}
       {error && <p>Ошибка загрузки манги.</p>}
       {!isLoading && !error && mangaList && (
@@ -27,15 +33,18 @@ function TopManga() {
           <Swiper
             modules={[Navigation]}
             resizeObserver={false}
-            slidesPerView={5}
+            slidesPerView={1}
             spaceBetween={5}
             navigation
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            breakpoints={{
+                768: {
+                  slidesPerView: 5,
+                },
+              }}
           >
             {mangaList.map((manga) => (
-              <SwiperSlide>
-                <MangaCard manga={manga} variant="small" key={manga.id} />
+              <SwiperSlide key={`${manga.id}`}>
+                <MangaCard manga={manga} variant="small" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -45,4 +54,4 @@ function TopManga() {
   );
 }
 
-export default TopManga;
+export default MangaList;

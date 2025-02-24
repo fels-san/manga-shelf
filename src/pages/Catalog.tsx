@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import classes from "./Catalog.module.css";
 import { fetchManga } from "../api/shikimori";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
@@ -63,9 +62,7 @@ function Catalog() {
             {!isLoading &&
               !error &&
               mangaList.map((manga) => (
-                <Link to={`/mangas/${manga.id}`}>
                   <MangaCard manga={manga} key={manga.id} variant="small" />
-                </Link>
               ))}
           </main>
         )}

@@ -59,7 +59,7 @@ function MangaDetails() {
                 {getMangaAwards(manga.id, mangaAwards) && (
                   <div className={classes.award}>
                     {getMangaAwards(manga.id, mangaAwards)?.map((award) => (
-                      <Link to={`/awards/${award.key}`}>
+                      <Link to={`/awards/${award.key}`} key={award.key}>
                         <EmojiEventsRoundedIcon /> {award.title}
                       </Link>
                     ))}
@@ -135,7 +135,7 @@ function MangaDetails() {
               <div className={classes.authors}>
                 <h3>Авторы</h3>
                 {manga.authors.map((author) => (
-                  <p>
+                  <p key={author.name}>
                     {author.name}: {author.role}
                   </p>
                 ))}

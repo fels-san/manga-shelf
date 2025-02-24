@@ -1,19 +1,15 @@
 .container {
   background-color: #1c1c1c;
   color: #bfbfbf;
-
   width: 80%;
   min-height: 80vh;
   margin-top: 6rem;
   margin-bottom: 6rem;
-
   display: flex;
   flex-direction: row;
   gap: 2rem;
-
   border-radius: 20px;
   overflow: hidden;
-
   padding: 3rem;
 }
 
@@ -98,4 +94,40 @@ button.applyFilters {
 .pagination button:disabled {
   background-color: #555;
   cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .mangaGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filters {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .mangaList {
+    width: 100%;
+  }
+
+  .mangaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pagination {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .mangaGrid {
+    grid-template-columns: 1fr;
+  }
 }
