@@ -1,3 +1,5 @@
+import { MangaAwards } from "../types/types";
+
 export const cleanDescription = (description: string) => {
   if (!description) return description;
   return description.replace(/\[character=\d+](.*?)\[\/character]/g, "$1");
@@ -50,7 +52,7 @@ export const formatMangaDate = (
   }
 };
 
-export const getMangaAwards = (mangaId, mangaAwards) => {
+export const getMangaAwards = (mangaId: string, mangaAwards: MangaAwards) => {
   const winnerAwards = [];
 
   for (const awardKey in mangaAwards) {
@@ -59,7 +61,7 @@ export const getMangaAwards = (mangaId, mangaAwards) => {
     for (const year in award.winners) {
       if (award.winners[year].includes(mangaId)) {
         winnerAwards.push({ key: awardKey, title: `${award.name} ${year}` });
-        break; // Выходим из внутреннего цикла, если нашли мангу в этой премии
+        break;
       }
     }
   }
