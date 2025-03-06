@@ -60,7 +60,7 @@ function MangaDetails() {
           </div>
           <div className={classes.body}>
             <div className={classes.poster}>
-              <img src={manga.poster} alt={manga.title} />
+              <img src={manga.poster} alt={manga.title} loading="lazy" />
             </div>
             <div className={classes.about}>
               <div className={classes.info}>
