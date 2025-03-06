@@ -43,12 +43,12 @@ function MangaDetails() {
   const endDate = getValidDate(manga?.releasedOn);
 
   return (
-    <div className={classes.container}>
+    <article className={classes.container}>
       {isLoading && <p>Загрузка...</p>}
       {error && <p>Ошибка загрузки манги.</p>}
       {!isLoading && !error && manga && (
         <>
-          <div className={classes.header}>
+          <header className={classes.header}>
             <h2>
               {manga.originalTitle !== manga.title
                 ? `${manga.title} / ${manga.originalTitle}`
@@ -57,13 +57,13 @@ function MangaDetails() {
             <h2 className={classes.score}>
               {manga.score} <StarRoundedIcon />
             </h2>
-          </div>
+          </header>
           <div className={classes.body}>
             <div className={classes.poster}>
               <img src={manga.poster} alt={manga.title} loading="lazy" />
             </div>
             <div className={classes.about}>
-              <div className={classes.info}>
+              <section className={classes.info}>
                 <h3>Информация</h3>
                 {getMangaAwards(manga.id.toString(), mangaAwards) && (
                   <div className={classes.award}>
@@ -76,25 +76,18 @@ function MangaDetails() {
                     )}
                   </div>
                 )}
-                <div>
-                  <p>
-                    <strong>Статус:</strong>
-                  </p>
-                  <p>{formatMangaDate(startDate, endDate)}</p>
-                </div>
+                <p>
+                  <strong>Статус:</strong> {formatMangaDate(startDate, endDate)}
+                </p>
                 {manga.volumes > 0 && (
-                  <div>
-                    <p>
-                      <strong>Тома:</strong> {manga.volumes}
-                    </p>
-                  </div>
+                  <p>
+                    <strong>Тома:</strong> {manga.volumes}
+                  </p>
                 )}
                 {manga.chapters > 0 && (
-                  <div>
-                    <p>
-                      <strong>Главы:</strong> {manga.chapters}
-                    </p>
-                  </div>
+                  <p>
+                    <strong>Главы:</strong> {manga.chapters}
+                  </p>
                 )}
                 <div>
                   <p>
@@ -120,46 +113,42 @@ function MangaDetails() {
                 </div>
                 {manga.licensors.length > 0 && (
                   <div>
-                    <>
-                      <p>
-                        <strong>Лицензировано:</strong>{" "}
-                      </p>
-                      <ul className={classes.list}>
-                        {manga.licensors.map(
-                          (licensor: string, index: number) => (
-                            <li key={index}>{licensor}</li>
-                          )
-                        )}
-                      </ul>
-                    </>
+                    <p>
+                      <strong>Лицензировано:</strong>{" "}
+                    </p>
+                    <ul className={classes.list}>
+                      {manga.licensors.map(
+                        (licensor: string, index: number) => (
+                          <li key={index}>{licensor}</li>
+                        )
+                      )}
+                    </ul>
                   </div>
                 )}
                 {manga.licenseNameRu && (
-                  <div>
-                    <p>
-                      <strong>Лицензировано в РФ под названием:</strong>{" "}
-                      {manga.licenseNameRu}
-                    </p>
-                  </div>
+                  <p>
+                    <strong>Лицензировано в РФ под названием:</strong>{" "}
+                    {manga.licenseNameRu}
+                  </p>
                 )}
-              </div>
-              <div className={classes.description}>
+              </section>
+              <section className={classes.description}>
                 <h3>Описание</h3>
                 <p>{stripHtml(manga.description) || "Отсутвует."}</p>
-              </div>
-              <div className={classes.authors}>
+              </section>
+              <section className={classes.authors}>
                 <h3>Авторы</h3>
                 {manga.authors.map((author) => (
                   <p key={author.name}>
                     {author.name}: {author.role}
                   </p>
                 ))}
-              </div>
+              </section>
             </div>
           </div>
         </>
       )}
-    </div>
+    </article>
   );
 }
 
