@@ -14,18 +14,23 @@ const theme = createTheme({
   },
 });
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { path: "/", element: <HomePage /> },
+        { path: "/mangas/:mangaId", element: <MangaDetails /> },
+        { path: "/catalog", element: <Catalog /> },
+        { path: "/awards/:awardName", element: <Awards /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/mangas/:mangaId", element: <MangaDetails /> },
-      { path: "/catalog", element: <Catalog /> },
-      { path: "/awards/:awardName", element: <Awards /> },
-    ],
-  },
-]);
+    basename: "/manga-shelf/",
+  }
+);
 
 function App() {
   return (
