@@ -1,5 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+
 import classes from "./MangaDetails.module.css";
 import { fetchManga } from "../api/shikimori";
 import {
@@ -8,12 +10,13 @@ import {
   getValidDate,
   stripHtml,
 } from "../utils/utils";
+import { mangaAwards } from "../data/awardsData";
 
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
-import { mangaAwards } from "../data/awardsData";
 
 function MangaDetails() {
+  const navigate = useNavigate();
   const { mangaId } = useParams();
 
   const {
@@ -29,6 +32,12 @@ function MangaDetails() {
   });
 
   const manga = mangas?.[0];
+
+  useEffect(() => {
+    if (mangaId === "random" && mangas?.[0]?.id) {
+      navigate(`/mangas/${mangas[0].id}`);
+    }
+  }, [mangaId, mangas, navigate]);
 
   const startDate = getValidDate(manga?.airedOn);
   const endDate = getValidDate(manga?.releasedOn);
