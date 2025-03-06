@@ -8,8 +8,7 @@ import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRigh
 import MangaCard from "../components/MangaCard";
 
 type Filters = {
-  yearFrom: string;
-  yearTo: string;
+  season: string;
   status: string;
   sort: string;
 };
@@ -19,8 +18,7 @@ function Catalog() {
   const limit = 20;
 
   const [filters, setFilters] = useState<Filters>({
-    yearFrom: "",
-    yearTo: "",
+    season: "",
     status: "",
     sort: "ranked",
   });
@@ -32,10 +30,22 @@ function Catalog() {
   } = useQuery({
     queryKey: [
       "mangaList",
-      { limit, order: filters.sort, status: filters.status, page },
+      {
+        limit,
+        order: filters.sort,
+        season: filters.season,
+        status: filters.status,
+        page,
+      },
     ],
     queryFn: () =>
-      fetchManga({ limit, order: filters.sort, status: filters.status, page }),
+      fetchManga({
+        limit,
+        order: filters.sort,
+        season: filters.season,
+        status: filters.status,
+        page,
+      }),
     refetchOnWindowFocus: false,
   });
 
@@ -44,9 +54,14 @@ function Catalog() {
     setPage(1);
     const formData = new FormData(event.currentTarget);
 
+    const yearFrom = (formData.get("yearFrom") as string) || "1900";
+    const yearTo =
+      (formData.get("yearTo") as string) || new Date().getFullYear().toString();
+
+    const season = `${yearFrom}_${yearTo}`;
+
     setFilters({
-      yearFrom: (formData.get("yearFrom") as string) || "",
-      yearTo: (formData.get("yearTo") as string) || "",
+      season,
       status: (formData.get("status") as string) || "",
       sort: (formData.get("sort") as string) || "ranked",
     });
@@ -62,7 +77,7 @@ function Catalog() {
             {!isLoading &&
               !error &&
               mangaList.map((manga) => (
-                  <MangaCard manga={manga} key={manga.id} variant="small" />
+                <MangaCard manga={manga} key={manga.id} variant="small" />
               ))}
           </main>
         )}
